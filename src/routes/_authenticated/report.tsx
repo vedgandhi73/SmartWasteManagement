@@ -64,7 +64,7 @@ function ReportPage() {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (status !== "success" || !result || !user || !file) return toast.error("Please verify the waste first.");
+    if (status !== "success" || !result || !user || !file) { toast.error("Please verify the waste first."); return; }
     setSubmitting(true);
     try {
       const path = `${user.id}/${crypto.randomUUID()}.jpg`;

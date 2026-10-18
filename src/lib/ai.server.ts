@@ -12,7 +12,7 @@ export class AiError extends Error {
 
 /** Sends a prompt + image to Lovable AI and returns the parsed JSON object it answers with. */
 export async function analyzeImageJson<T>(prompt: string, imageDataUrl: string): Promise<T> {
-  const apiKey = process.env.LOVABLE_API_KEY;
+  const apiKey = process.env['LOVABLE_API_KEY'];
   if (!apiKey) throw new AiError(401, "AI is not configured.");
   const provider = createOpenAI({
     baseURL: GATEWAY,

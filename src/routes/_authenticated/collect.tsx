@@ -64,7 +64,7 @@ function CollectPage() {
     setVerifying(true);
     const r = await verifyCollection({ data: { reportId: task.id, image } });
     setVerifying(false);
-    if (!r.ok) return toast.error(r.error);
+    if (!r.ok) { toast.error(r.error); return; }
     const pct = `${(r.result.confidence * 100).toFixed(0)}% confidence`;
     if (r.passed) {
       setOutcome(`Verified! You earned ${r.reward} points (${pct}).`);
