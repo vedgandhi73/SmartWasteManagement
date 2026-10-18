@@ -14,13 +14,206 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      collected_wastes: {
+        Row: {
+          collection_date: string
+          collector_id: string
+          id: number
+          report_id: number
+          status: string
+        }
+        Insert: {
+          collection_date?: string
+          collector_id: string
+          id?: number
+          report_id: number
+          status?: string
+        }
+        Update: {
+          collection_date?: string
+          collector_id?: string
+          id?: number
+          report_id?: number
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "collected_wastes_report_id_fkey"
+            columns: ["report_id"]
+            isOneToOne: false
+            referencedRelation: "reports"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notifications: {
+        Row: {
+          created_at: string
+          id: number
+          is_read: boolean
+          message: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          is_read?: boolean
+          message: string
+          type: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          is_read?: boolean
+          message?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          address: string | null
+          created_at: string
+          id: string
+          name: string
+          notifications_enabled: boolean
+          phone: string | null
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          id: string
+          name?: string
+          notifications_enabled?: boolean
+          phone?: string | null
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          id?: string
+          name?: string
+          notifications_enabled?: boolean
+          phone?: string | null
+        }
+        Relationships: []
+      }
+      reports: {
+        Row: {
+          amount: string
+          collector_id: string | null
+          created_at: string
+          id: number
+          image_url: string | null
+          location: string
+          status: string
+          user_id: string
+          verification_result: Json | null
+          waste_type: string
+        }
+        Insert: {
+          amount: string
+          collector_id?: string | null
+          created_at?: string
+          id?: number
+          image_url?: string | null
+          location: string
+          status?: string
+          user_id: string
+          verification_result?: Json | null
+          waste_type: string
+        }
+        Update: {
+          amount?: string
+          collector_id?: string | null
+          created_at?: string
+          id?: number
+          image_url?: string | null
+          location?: string
+          status?: string
+          user_id?: string
+          verification_result?: Json | null
+          waste_type?: string
+        }
+        Relationships: []
+      }
+      reward_items: {
+        Row: {
+          collection_info: string
+          cost: number
+          description: string | null
+          id: number
+          is_available: boolean
+          name: string
+        }
+        Insert: {
+          collection_info: string
+          cost: number
+          description?: string | null
+          id?: number
+          is_available?: boolean
+          name: string
+        }
+        Update: {
+          collection_info?: string
+          cost?: number
+          description?: string | null
+          id?: number
+          is_available?: boolean
+          name?: string
+        }
+        Relationships: []
+      }
+      transactions: {
+        Row: {
+          amount: number
+          created_at: string
+          description: string
+          id: number
+          type: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          description: string
+          id?: number
+          type: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          description?: string
+          id?: number
+          type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_impact_stats: {
+        Args: never
+        Returns: {
+          reports_submitted: number
+          tokens_earned: number
+          waste_collected: number
+        }[]
+      }
+      get_leaderboard: {
+        Args: never
+        Returns: {
+          name: string
+          points: number
+          user_id: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
