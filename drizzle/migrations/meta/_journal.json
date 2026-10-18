@@ -8,6 +8,13 @@
       "when": 1792307515692,
       "tag": "0000_waste_app",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792308453713,
+      "tag": "0001_tighten_read_policies",
+      "breakpoints": true
     }
   ]
 }
